@@ -22,6 +22,7 @@ RUN echo "export VISIBLE=now" >> /etc/profile
 RUN apt-get install -y vim
 RUN apt-get install -y wget
 RUN apt-get install -y curl
+#RUN apt-get install -y unzip
 
 #install jdk8
 RUN echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections && \
@@ -29,15 +30,20 @@ RUN echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-s
   DEBIAN_FRONTEND=noninteractive apt-get install -y oracle-java8-installer && \
   apt-get clean
 
-ADD tomcat8 /tomcat8
+#ADD tomcat8 /tomcat8
+
+ENV TOMCAT_VERSION 8.5.9
+RUN cd /tmp && wget --quiet --no-cookies http://apache.rediris.es/tomcat/tomcat-8/v${TOMCAT_VERSION}/bin/apache-tomcat-${TOMCAT_VERSION}.tar.gz -O /tmp/tomcat.tgz
+RUN tar xzvf /tmp/tomcat.tgz -C /opt && mv /opt/apache-tomcat-${TOMCAT_VERSION} /opt/tomcat
+
 ADD run.sh /run.sh
 RUN chmod +x /*.sh
 
 
-ENV CATALINA_HOME /tomcat8
+ENV CATALINA_HOME /opt/tomcat
 ENV PATH $CATALINA_HOME/bin:$PATH
 
-RUN chmod +x /tomcat8/bin/*.sh
+RUN chmod +x /opt/tomcat/bin/*.sh
 
 EXPOSE 22
 EXPOSE 8080
