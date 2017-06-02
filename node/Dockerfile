@@ -14,8 +14,28 @@ RUN apt-get install -y nodejs npm
 RUN npm install -g n
 RUN n latest
 
+RUN apt-get install -y git-core
+
+RUN git config --global user.name ray
+RUN git config --global user.email 77173981@qq.com
+
 ENV NOTVISIBLE "in users profile"
 RUN echo "export VISIBLE=now" >> /etc/profile
 
+RUN git clone http://ray:ray123456@code-iacloud.ceway.com.cn/scm/one_card/cw_server.git /cw_server
+
+WORKDIR /cw_server 
+RUN npm install --registry=https://registry.npm.taobao.org
+
+
+ADD run.sh /run.sh
+RUN chmod +x /*.sh
+
 EXPOSE 22
-CMD ["/usr/sbin/sshd", "-D"]
+EXPOSE 3001
+
+#CMD ["/usr/sbin/sshd", "-D"]
+#CMD ["npm", "start"] 
+ 
+#CMD ["/run.sh"]
+CMD ["/run.sh"]
