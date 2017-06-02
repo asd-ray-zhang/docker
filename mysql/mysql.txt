@@ -1,0 +1,38 @@
+docker build -t node/ubuntu:v1 . 
+
+docker run -i -t -d -p 222:22 d27c71fc8589
+
+docker run -i -t -d -p 1222:22 62137105e276
+
+
+
+apt-get install -y git-core
+
+git config --global user.name ray
+git config --global user.email 77173981@qq.com
+
+
+
+ git clone http://ray:ray123456@code-iacloud.ceway.com.cn/scm/one_card/cw_server.git /cw_server
+ 
+ 
+ # &exec npm start
+ 
+ 
+ 
+ 
+  docker build -t mysql/ubuntu:v1 .
+  
+   more /etc/mysql/mysql.conf.d/mysqld.cnf
+   
+   
+    chown -R mysql:mysql /var/run/mysqld/
+   
+   
+    /usr/bin/mysqld_safe&
+	
+	exec /usr/bin/mysqld_safe&
+	
+	/usr/sbin/sshd -D &&
+	
+	safe_mysqld&
