@@ -1,5 +1,5 @@
 FROM ubuntu:16.04
-MAINTAINER Sven Dowideit <SvenDowideit@docker.com>
+MAINTAINER ray <77173981@qq.com>
 
 RUN apt-get update && apt-get install -y openssh-server  && apt-get install -y python-software-properties software-properties-common
 RUN mkdir /var/run/sshd
